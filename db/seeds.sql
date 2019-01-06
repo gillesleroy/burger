@@ -1,0 +1,6 @@
+INSERT INTO BURGERS(BURGER_NAME, DEVOURED)
+VALUES('Cheese and fries Burger',false);
+INSERT INTO BURGERS(BURGER_NAME, DEVOURED)
+VALUES('Bacon and Salad Burger',false);
+INSERT INTO BURGERS(BURGER_NAME, DEVOURED)
+VALUES('Sausage and Jam Burger',false);
