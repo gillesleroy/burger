@@ -46,10 +46,21 @@ app.get("/burgers", function(req, res) {
             eater: "Gilles"
         });
       });
-
 });  
 
 
+app.get("/css/reset", function(req,res) {
+  res.sendFile(path.join(__dirname, "./../views/layouts/css/reset.css"));
+});
+app.get("/css/style", function(req,res) {
+  res.sendFile(path.join(__dirname, "./../views/layouts/css/style.css"));
+});
+app.get("/image/concrete", function(req,res) {
+  res.sendFile(path.join(__dirname, "./../views/layouts/images/concrete_seamless.png"));
+});
+app.get("/image/burger", function(req,res) {
+  res.sendFile(path.join(__dirname, "./../views/layouts/images/burger.jpg"));
+});
 // app.get('/burgers', function(req, res) {
 // // res.send('Hello from api GET friends route.');
 // res.send(friends.friends);

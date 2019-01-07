@@ -1,4 +1,4 @@
-<style media="screen">
+{{!-- <style media="screen">
   li {
     height : 100px;
     width: 100px;
@@ -6,12 +6,56 @@
     background-color: steelblue;
     margin-bottom: 30px;
   }
-</style>
+</style> --}}
 
 <h1>Burgers {{eater}}</h1>
 
-<ul>
+{{!-- <div class="work">
+</div> --}}
+<center>
+{{!-- <div class="normal"> --}}
+<div class="work">
+  {{!-- <a href="https://gillesleroy.github.io/word-guess-game/"> --}}
+  <img class="bio-images" src="image/burger" alt="Burger">
+  {{!-- </a> --}}
+  <h3>Name your Burger</h3>
+</div>
+{{!-- </div> --}}
+
+<div>
+  <textarea name="" id="input-BurgerName" cols="300" rows="1"></textarea>
+</div>
+{{!-- <div class="work">
+</div> --}}
+<div >
+  <input id="submit-button" type="submit" value="Submit">
+</div>
+</center>
+{{!-- <div class="work">
+</div> --}}
+{{!-- <div class="work">
+</div> --}}
+{{!-- <div class="work">
+</div> --}}
+
+<div >
+  <ul>
+    {{#each foods }}
+      <li>{{burger_name}}</li>
+    {{/each}}
+  </ul>
+</div>
+
+<div>
+  <ul>
+    {{#each foods }}
+      <li>{{id}}</li>
+        <a href="/survey"><button type="button" class="btn btn-lg btn-primary"><h4><span class="glyphicon glyphicon-list-alt"></span>Devour it!</h4></button></a>
+    {{/each}}
+  </ul>
+</div>
+{{!-- <ul>
 {{#each foods }}
   <li>{{burger_name}}</li>
 {{/each}}
-</ul>
+</ul> --}}
