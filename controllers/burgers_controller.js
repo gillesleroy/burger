@@ -13,17 +13,6 @@ var exphbs = require("express-handlebars");
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
-// router.get("/", function(req, res) {
-//     res.send('Hello from api GET friends route.');
-// //     burger.all(function(data) {
-// //       var hbsObject = {
-// //         burger: data
-// //       };
-// //       console.log(hbsObject);
-// //    //   res.render("index", hbsObject);
-// //     });
-//   });
-
 app.get('/', function(req, res) {
     // res.send('Hello from api GET all burgers route.');
     //res.sendFile(path.join(__dirname, "./../public/friends.html"));
@@ -32,22 +21,13 @@ app.get('/', function(req, res) {
                 burger: data
               };
               console.log(dataObj);
-              res.render("index", dataObj.burger[0]);
+              res.render("index", {
+                foods: dataObj.burger,
+                eater: "Gilles"
             });
-  });
+      });
+    });
  
-// app.get('/devourBurger', function(req, res) {
-//   // res.send('Hello from api GET all burgers route.');
-//   //res.sendFile(path.join(__dirname, "./../public/friends.html"));
-//   burger.all(function(data) {
-//             var dataObj = {
-//               burger: data
-//             };
-//             console.log(dataObj);
-//             res.render("index", dataObj.burger[1]);
-//           });
-// });
-
 app.post("/burger", function(req, res) {
   connection.query("INSERT INTO BURGERS (burger_name) VALUES (?)", [req.body.burger_name], function(err, result) {
     if (err) {
@@ -78,17 +58,6 @@ app.put("/devourBurger/:burgerId", function(req, res) {
 
   //  burger.updateOne(req.body.devoured,req.params.burgerId);
 
-    // function(data) {
-    //     var dataObj = {
-    //       burger: data
-    //     };
-    //     console.log(dataObj);
-    //     res.render("burgers", {
-    //         foods: dataObj.burger,
-    //         eater: "Gilles"
-    //     });
-    //   }
-      // });
     });  
   });
 
