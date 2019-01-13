@@ -7,11 +7,20 @@ var orm = require("../config/orm.js");
 
 // Find the buyer with the most pets.
 // orm.updateOne(1);
+
 var burger = {
   all: function(cb) {
       orm.selectAll( function(res) {
         cb(res);
       });
+  },
+  allDevoured: function(cb) {
+    orm.selectAllDevoured( function(res) {
+      cb(res);
+    });
+  },
+  updateOne: function(burg) {
+    orm.updateOne(burg);   
   }
 }
 

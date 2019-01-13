@@ -20,8 +20,17 @@ var orm = {
        //   console.log(result);
           cb(result);
         });    
-    }
-
+    },
+    selectAllDevoured: function (cb)
+    {
+        var query = connection.query(
+        "SELECT * FROM BURGERS WHERE DEVOURED = 1"
+        , function(err, result) {
+          if (err) throw err;
+       //   console.log(result);
+          cb(result);
+        });    
+    },
     // insertOne: function(burgerName)
     // {
     //     var query = connection.query(
@@ -35,18 +44,18 @@ var orm = {
     //       );
     // },
 
-    // updateOne: function(burgerId)
-    // {
-    //     var query = connection.query(
-    //         "UPDADE BURGERS SET DEVOURED = true WHERE ID = ?",
-    //         {
-    //           id: burgerId
-    //         },
-    //         function(err, res) {
-    //           console.log(res.affectedRows + " burger updated!\n");
-    //         }
-    //       );
-    // }
+    updateOne: function(burgerId)
+    {
+        var query = connection.query(
+            "UPDADE BURGERS SET DEVOURED = true WHERE ID = ?",
+            {
+              id: burgerId
+            },
+            function(err, res) {
+              console.log(res.affectedRows + " burger updated!\n");
+            }
+          );
+    }
   };
   
   module.exports = orm;

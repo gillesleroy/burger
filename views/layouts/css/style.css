@@ -285,6 +285,20 @@ main {
   position: relative;
   /* margin: auto;  */
   /* border: 3px solid green; */
+  float: left;
+  /* Box-model */
+  /* left: 300px; */
+  width: 274px;
+  /* width: 800px; */
+  /* height: 250px; */
+  /* margin: 20px 0 25px; */
+  overflow: auto;
+}
+.burger{
+  /* Positioning */
+  position: relative;
+  /* margin: auto;  */
+  /* border: 3px solid green; */
   /* float: left; */
   /* Box-model */
   /* left: 300px; */
@@ -403,6 +417,23 @@ input[type=submit] {
 
   /* Visual */
   border: 0 none;
+}
+
+.btn {
+  /* Box-model */
+  /* padding: 10px 30px; */
+  font-size: 18px;
+
+  /* Typography */
+  color: #fff;
+
+  /* Misc */
+  cursor: pointer;
+  /* background: #4aaaa5; */
+  background: steelblue;
+
+  /* Visual */
+  border: 1 none;
 }
 
 @media only screen and (max-width: 768px) {

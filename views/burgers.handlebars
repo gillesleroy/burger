@@ -14,7 +14,7 @@
 </div> --}}
 <center>
 {{!-- <div class="normal"> --}}
-<div class="work">
+<div class="burger">
   {{!-- <a href="https://gillesleroy.github.io/word-guess-game/"> --}}
   <img class="bio-images" src="image/burger" alt="Burger">
   {{!-- </a> --}}
@@ -23,39 +23,156 @@
 {{!-- </div> --}}
 
 <div>
-  <textarea name="" id="input-BurgerName" cols="300" rows="1"></textarea>
+  <form id="createBurger" class="button-size">
+      <textarea name="burgerName" id="input-BurgerName" cols="300" rows="1"></textarea>
+  {{!-- <textarea type="text" name="plan"></textarea> --}}
+      <input id="submit-button" type="submit" value="Submit">    
+        {{!-- <button type="submit">Submit</button> --}}
+      {{!-- <button id="submit-button" type="submit">Submit</button> --}}
+  </form>
 </div>
 {{!-- <div class="work">
 </div> --}}
-<div >
+{{!-- <div >
   <input id="submit-button" type="submit" value="Submit">
+</div> --}}
+
+
+{{!-- <div class="work">
+</div> --}}
+{{!-- <div class="work">
+</div> --}}
+{{!-- <div class="work">
+</div> --}}
+<main class="container">
+{{!-- <section class="main-section"> --}}
+<div class="work" >
+  <ul>
+    {{#each foods }}
+      {{#unless devoured}}
+        <li>{{id}}  {{burger_name}}</li>
+      {{/unless}}
+    {{/each}}
+  </ul>
 </div>
+
+<div class="work" >
+<form id="devourIt" class="button-size">
+  {{!-- <select name="id">
+		{{#each plans}}
+			<option value="{{this.id}}">{{this.plan}}</option>
+		{{/each}}
+	</select>
+  <textarea type="text" name="plan" placeholder="plan"></textarea>
+  <button type="submit">Update Plan!</button> --}}
+  <ul>
+    {{#each foods }}
+          {{!-- <button data-planid="{{this.id}}" class="delplan">Delete Plan!</button> --}}
+      {{!-- <li><button type="button" class="btn btn-lg btn-primary" burger-id="{{this.id}}"><h4><span class="glyphicon glyphicon-list-alt"></span>Devour it!</h4></button></li>  --}}
+      {{!-- <button type="button" class="bt" burger-id="{{this.id}}"><h4><span class="glyphicon glyphicon-list-alt"></span>Devour it!</h4></button> --}}
+     {{!-- <li><button type="button" >Devour it!</button></a></li>  --}}
+      {{#unless devoured}}
+        <li><button type="button" class="btn" burger-id="{{this.id}}">Devour it!</button></li> 
+      {{/unless}}     
+    {{/each}}
+  </ul>
+</form>
+</div>
+
+{{!-- <div class = "work" >
+  <ul>
+    {{#each foods }}
+      <li><a href="/devourBurger/{{id}}"><button type="button" class="btn btn-lg btn-primary"><h4><span class="glyphicon glyphicon-list-alt"></span>Devour it!</h4></button></a></li> 
+    {{/each}}
+  </ul>
+</div> --}}
+
+<div class = "work" >
+  <ul>
+    {{#each foods }}
+        {{#if devoured}}
+           <li>{{id}}  {{burger_name}}</li>
+        {{/if}}
+    {{/each}}
+  </ul>
+</div>
+
+</main>
+
 </center>
-{{!-- <div class="work">
-</div> --}}
-{{!-- <div class="work">
-</div> --}}
-{{!-- <div class="work">
-</div> --}}
-
-<div >
-  <ul>
-    {{#each foods }}
-      <li>{{burger_name}}</li>
-    {{/each}}
-  </ul>
-</div>
-
-<div>
-  <ul>
-    {{#each foods }}
-      <li>{{id}}</li>
-        <a href="/survey"><button type="button" class="btn btn-lg btn-primary"><h4><span class="glyphicon glyphicon-list-alt"></span>Devour it!</h4></button></a>
-    {{/each}}
-  </ul>
-</div>
+{{!-- </section> --}}
 {{!-- <ul>
 {{#each foods }}
   <li>{{burger_name}}</li>
 {{/each}}
 </ul> --}}
+
+<script type="text/javascript">
+
+  $(".btn").on("click", function(event) {
+    // Get the ID from the button.
+    // This is shorthand for $(this).attr("data-planid")
+   // var id = $(this).data("planid");
+    var id = $(this).attr("burger-id");
+//alert("id="+id);
+    // Send the DELETE request.
+
+    var devoured = {
+      isDevoured: 1
+    };
+
+    $.ajax("/devourBurger/" + id, {
+      type: "PUT",
+      data: devoured
+    }).then(
+      function() {
+        console.log("Updated id ", id);
+        // Reload the page to get the updated list
+        location.reload();
+      }
+    );
+  });
+
+  $("#createBurger").on("submit", function(event) {
+    // Make sure to preventDefault on a submit event.
+    event.preventDefault();
+
+    // [name=plan] will find an element with a "name" attribute equal to the string "plan"
+    var newBurger = {
+      burger_name: $("#createBurger [name=burgerName]").val().trim()
+    };
+
+    // Send the POST request.
+    $.ajax("/burger", {
+      type: "POST",
+      data: newBurger
+    }).then(
+      function() {
+        console.log("created new burger");
+        // Reload the page to get the updated list
+        location.reload();
+      }
+    );
+  });
+/*
+  $("#devourIt").on(".btn btn-lg btn-primary", function(event) {
+    event.preventDefault();
+alert("ho!");
+    var id = $("[name=id]").val().trim();
+
+    var updatedPlan = {
+      plan: $("#updateplan [name=plan]").val().trim()
+    };
+    $.ajax("/todos/" + id, {
+      type: "PUT",
+      data: updatedPlan
+    }).then(
+      function() {
+        console.log("updated id ", id);
+        // Reload the page to get the updated list
+        location.reload();
+      }
+    );
+  });
+  */
+</script>
